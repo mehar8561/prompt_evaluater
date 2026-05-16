@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Evaluator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 Prompt Evaluator</h1>
+      <p>Analyze and improve your AI prompts</p>
+    </header>
+
+    <main>
+      <div class="input-section">
+        <label for="prompt-input">Enter your prompt:</label>
+        <textarea id="prompt-input" placeholder="Type or paste your prompt here..." rows="6"></textarea>
+        <div class="char-count">
+          <span id="char-counter">0</span>/5000 characters
+        </div>
+        <div class="button-group">
+          <button id="evaluate-btn" class="btn btn-primary">📊 Evaluate Prompt</button>
+          <button id="evaluate-ai-btn" class="btn btn-secondary">🤖 AI Evaluation</button>
+          <button id="clear-btn" class="btn btn-outline">🗑️ Clear</button>
+        </div>
+      </div>
+
+      <div id="results-section" class="results-section hidden">
+        <div class="score-overview">
+          <div class="score-circle">
+            <span id="overall-score">0</span>
+            <small>/10</small>
+          </div>
+          <div class="grade-badge" id="grade-badge">
+            <span id="grade-letter">-</span>
+            <span id="grade-label">Not Evaluated</span>
+          </div>
+        </div>
+
+        <div class="criteria-breakdown">
+          <h3>Criteria Breakdown</h3>
+          <div id="criteria-bars"></div>
+        </div>
+
+        <div class="suggestions-section">
+          <h3>💡 Suggestions for Improvement</h3>
+          <ul id="suggestions-list"></ul>
+        </div>
+
+        <div class="feedback-details">
+          <h3>📋 Detailed Feedback</h3>
+          <div id="feedback-details"></div>
+        </div>
+      </div>
+
+      <div class="examples-section">
+        <h3>📝 Try these examples:</h3>
+        <div class="example-cards">
+          <div class="example-card" data-prompt="Write something about dogs">
+            <span class="badge bad">Poor</span>
+            <p>"Write something about dogs"</p>
+          </div>
+          <div class="example-card" data-prompt="Write a 500-word blog post about the top 5 health benefits of daily walking for adults over 40. Use a friendly, conversational tone. Include one scientific study reference per benefit. Format with headers and bullet points.">
+            <span class="badge good">Great</span>
+            <p>"Write a 500-word blog post about the top 5 health benefits..."</p>
+          </div>
+          <div class="example-card" data-prompt="Act as a senior Python developer. Review the following code for potential security vulnerabilities, performance issues, and adherence to PEP 8 standards. Provide your feedback in a numbered list with severity levels (high/medium/low) for each issue found.">
+            <span class="badge excellent">Excellent</span>
+            <p>"Act as a senior Python developer. Review the following code..."</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Built with GitHub Copilot | Prompt Evaluator v1.0</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
