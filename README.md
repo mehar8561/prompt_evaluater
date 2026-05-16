@@ -34,3 +34,18 @@ Build and run:
 docker build -t prompt-evaluator .
 docker run -p 3000:3000 --env OPENAI_API_KEY=$OPENAI_API_KEY prompt-evaluator
 ```
+
+## Azure Deployment
+
+This repo includes a GitHub Actions workflow that deploys the app to Azure App Service on every push to `main`.
+
+Required GitHub secrets:
+- `AZURE_WEBAPP_NAME`: the name of your Azure App Service
+- `AZURE_WEBAPP_PUBLISH_PROFILE`: the publish profile XML from Azure
+
+To deploy:
+1. Create an Azure Web App for Linux with Node.js or a plain web app.
+2. Download the publish profile from the Azure portal.
+3. Add the publish profile XML as the `AZURE_WEBAPP_PUBLISH_PROFILE` secret in GitHub.
+4. Add your Azure app name as the `AZURE_WEBAPP_NAME` secret.
+5. Push to `main` and the workflow will deploy the app.
