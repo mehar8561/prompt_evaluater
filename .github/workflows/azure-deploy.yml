@@ -3,9 +3,13 @@ name: Azure App Service Deploy
 on:
   push:
     branches: [ 'main' ]
+    tags:
+      - 'v*'
+  release:
+    types: [published]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,17 +22,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-
-      - name: Package app for deployment
-        run: |
-          rm -f app.zip
-          zip -r app.zip . -x '*.git*' -x '.github/*' -x 'node_modules/*' -x 'tests/*' -x '*.env*' -x 'api/*'
+      - name: Build application
+        run: npm run build --if-present
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: app.zip
+          package: .
